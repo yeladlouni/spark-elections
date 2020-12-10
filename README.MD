@@ -13,3 +13,5 @@ Preprocessing
 1. Charger les données des tweets dans un dataframe df
 2. Effectuer le split selon les proportions 60%, 20%, 20%
 3. Ecrire un RFormula qui contient le nombre de likes, retweets_count et le contenu du tweet
+    *  En utilisant Tokenizer et StopWordsRemover
+    
