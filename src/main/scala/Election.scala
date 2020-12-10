@@ -15,8 +15,6 @@ object Election extends App {
     .option("readmode", "permissive")
     .load("C:\\Users\\yelad\\IdeaProjects\\spark-elections\\data\\hashtag_joebiden.csv")
 
-
-  
   var df_trump = spark.read
     .format("csv")
     .option("header", "true")
@@ -65,5 +63,20 @@ object Election extends App {
   // Avro
   df.write
     .parquet("C:\\Users\\yelad\\IdeaProjects\\spark-elections\\output")
+
+
+  // Souvent en machine learning, on fait un split des données d'une manière aléatoire
+  // On applique l'algorithme sur la partie train pour l'apprentissage, dev pour évaluer l'algorithme
+  // et test pour envoyer le résultat sur des données réelles
+
+  val dataframes = df.randomSplit(Array(0.7, 0.2, 0.1))
+  var df_train = dataframes(0)
+  var df_dev = dataframes(1)
+  var df_test = dataframes(3)
+
+  println(df_train.count())
+  println(df_dev.count())
+  println(df_test.count())
+
 
 }
